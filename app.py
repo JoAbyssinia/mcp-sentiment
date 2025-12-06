@@ -1,5 +1,5 @@
 import json
-import graphlib as gr
+import gradio as gr
 from textblob import TextBlob
 
 def sentiment_analysis(text: str) -> str:
@@ -24,7 +24,7 @@ def sentiment_analysis(text: str) -> str:
     return json.dumps(result)
 
 demo = gr.Interface(
-    fs=sentiment_analysis(),
+    fn=sentiment_analysis,
     inputs=gr.Textbox(placeholder="Enter text to analyze..."),
     outputs=gr.Textbox(),
     title="Text Sentiment Analysis",
@@ -32,4 +32,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(mcp_server=True)
